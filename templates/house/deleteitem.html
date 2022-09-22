@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>{{title}}</title>
+</head>
+
+
+<body>
+
+<h1>【削除確認】</h1>
+<p>・以下のデータを削除します。</p>
+<p>・よろしいですか？</p>
+
+<table>
+    <tr>
+        <th>品名</th>
+        <th>部屋名</th>
+        <th>モノサイズ</th>
+    </tr>
+
+    <tr>
+        <td>{{obj.itemname}}</td>
+        <td>{{obj.sampleroom.name}}</td>
+        <td>{{obj.originalsize}}</td>
+    </tr>
+</table>
+
+
+    <form action="{% url 'deleteitem' id %}" method="post">
+        {% csrf_token %}
+        <input type="submit" value="削除">
+    </form>
+
+    <a href="/house/createitem">キャンセル</a>
+
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>{{title}}</title>
+</head>
+
+
+<body>
+
+<h1>部屋名編集フォーム</h1>
+<p>部屋の名前を変更してください。</p>
+<p>既にある名前は使用できません。</p>
+<p>部屋の名前は20文字以内にしてください。</p>
+
+
+    <form action="{% url 'editroom' id %}" method="post">
+        {% csrf_token %}
+        {{ form.as_table }}
+        <input type="submit" value="変更">
+    </form>
+    <a href="/house/createroom">変更せず戻る</a>
+
+</body>
+</html>

@@ -1,0 +1,168 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <title>What's in my house</title>
+
+    <!-- CSSの適用リンク -->
+    <link rel="stylesheet" type="text/css" 
+        href="{% static 'house/css/style.css' %}" />
+
+    <!-- グーグルフォント用のリンク -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kaisei+Opti&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Arima:wght@100&display=swap" rel="stylesheet">
+    <link href="https://use.fontawesome.com/releases/v6.1.1/css/all.css" rel="stylesheet">
+
+</head>
+
+
+
+
+<header class="header">
+    <div class="header-container w-container">
+        <div class="title">
+            <h2><a href="{% url 'index' %}">{{user}} さんのお家</a></h2>
+        </div>
+
+        <div>
+            <form action="{% url 'account_logout' %}" method="post">
+                {% csrf_token %}
+                <input type="submit" value="ログアウト">
+            </form>
+
+            <button class="navbtn">
+                <i class="fa-solid fa-bars"></i>
+                <span class="sr-only">USER</span>
+            </button>
+        </div>
+
+    </div>
+</header>
+
+<section class="hero">
+    <div class="hero-container w-container">
+        <h1>- What's in my house -</h1>
+        <p>お家の持ち物を見える化しよう</p>
+    </div>
+</section>
+
+
+<body>
+
+<main class="maincontent-container">  
+
+    <div class="list_side">
+        <h3>{{user}} さんの持ち物リスト</h3><br>
+        
+        <div class="form">            
+            <table><tr><td>
+                <form action="{% url 'index' %}" method="post">
+                    {% csrf_token %}{{ form.as_p }}
+                    </td><td>
+                    <input class="twowordbtn" type="submit" value="表示"></td>
+                </form></tr>
+            </table>
+        </div>  
+
+        <div class="btnarea">
+            <table><tr>
+                <td><a href="/house/createitem" class="btn">モノの追加</a></td>
+                <td><a href="/house/createroom" class="btn">部屋の追加・編集・削除</a></td></tr>
+            </table>
+        </div>
+
+
+
+        <table class="list_table">
+            <thead class="list_thead">
+                <tr class="list_tr">
+                    <th scope="col">品名</th>
+                    <th scope="col">部屋名</th>
+                    <th scope="col">数量</th>
+                    <th scope="col">サイズ</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+
+            <tbody class="list_body">
+                {% for item in itemlist %}
+                <tr class="list_tr">
+                    <td data-label class="txt">{{item.itemname}}</td>
+                    <td data-label class="txt">{{item.sampleroom.name}}</td>
+                    <td data-label class="txt">{{item.qty}}</td>
+                    <td data-label class="txt">{{item.originalsize}}</td>
+                    <td data-label class="tdbtn"><a href="{% url 'edititem' item.id %}">編集</a></td>
+                    <td data-label class="tdbtn"><a href="{% url 'deleteitem' item.id %}">削除</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table> 
+
+        <!-- ページネーション部分 -->    
+        <div class="pager">
+            <ul class="pagination">
+            {% if itemlist.has_previous %}
+                <li><a href="{% url 'index' %}" class="active"><span>最初へ</span></a></li>            
+                <li class="pre"><a href="{% url 'index' %}{{itemlist.previous_page_number}}"><span>前へ</span></a></li>
+            
+            {% else%}
+                <li><a href="#" class="active"><span>最初へ</span></a></li>
+                <li class="pre"><a href="#"><span>前へ</span></a></li>
+
+            {% endif %}
+                <li><a href="#"><span>{{itemlist.number}}/{{itemlist.paginator.num_pages}}</span></a></li>
+
+            {% if itemlist.has_next %}
+                <li class="next"><a href="{% url 'index' %}{{itemlist.next_page_number}}"><span>次へ</span></a></li>
+                <li><a href="{% url 'index' %}{{itemlist.paginator.num_pages}}" class="active"><span>最後へ</span></a></li>   
+            
+            {% else %}
+                <li class="next"><a href="#"><span>次へ</span></a></li>
+                <li><a href="#" class="active"><span>最後へ</span></a></li>  
+
+            {% endif %}
+            </ul>
+        </div>
+
+    </div>
+
+    
+    <div class="graph_side">
+        <h3>{{graphtitle}} グラフ</h3>
+        <br>
+
+        <div class="grapharea">
+            <img src="data:image/png;base64,{{ chart | safe }}">
+        </div>
+        
+        <div class="btnarea">
+            <table><tr>
+            <h4>グラフの切り替え</h4>                
+                <td><a href="/house/createitem" class="btn" method="post">棒グラフ</a></td>
+                <td><a href="/house/createitem" class="btn" method="post">折れ線グラフ</a></td>
+            </table>
+        </div>
+    
+    </div>
+
+</main>
+
+
+<footer class="footer">
+    <div class="footer-container w-container">
+        <p>©2022 What's in my house.</p>
+    </div>
+</footer>
+
+
+</body>
+</html>
+
+

@@ -1,0 +1,344 @@
+/*レスポンシブ対応：スマホ320px〜540px、タブレット600px〜1024px、PC1280px〜*/
+/*ロゴ作成サイト：CCOOLTEXT*/
+/*テーブル参考サイト：https://pecopla.net/web-column/table-design*/
+/*テーブル参考サイト：https://b-risk.jp/blog/2018/07/table-css/*/
+/*ページネーション参考サイト：https://nakox.jp/web/wordpress/wp_pager_css*/
+
+
+
+/*-------ナビボタンの設定-------*/
+.navbtn{
+    padding: 0;                                 /*バーイメージの余白を消す*/
+    outline: none;                              /*バーイメージの外枠消す*/
+    border: none;                               /*バーイメージのボーダー消す*/
+    background: transparent;                    /*バーイメージの背景を透明*/
+    cursor: pointer;                            /*カーソルを当てた時ポインタを手の形にする*/
+    color: rgb(255, 255, 255);               /*イメージの色を変えた*/
+}
+
+
+/*-------ヒーローボタンの設定-------*/
+.herobtn{
+    display: block;                            /*四角いボタンを作る。*/
+    width: 250px;                              /*横幅*/
+    padding: 10px;                             /*ボタンの中の余白を10pxにする。*/
+    box-sizing: border-box;                    /*余白10pxを含めて260pxにする為*/
+    border-radius: 4px;                        /*角を丸くする。*/
+    background-color: #888791;               /*ボタンの背景色*/
+    color:white;                             /*ボタンの文字色*/
+    font: size 18px;
+    text-align: center;                        /*文字を中心にする。*/
+}
+
+/*-------その他のボタンの設定-------*/
+.btn{
+    display: block;                            /*四角いボタンを作る。*/
+    min-width: 150px;                          /*横幅*/
+    height: 35px;
+    box-sizing: border-box;                    /*余白10pxを含めて260pxにする為*/
+    border-radius: 4px;                        /*角を丸くする。*/
+    background-color: #ffffff;               /*ボタンの背景色*/
+    color:rgb(0, 0, 0);                      /*ボタンの文字色*/
+    font: size 13px;
+    text-align: center;                        /*文字を中心にする。*/
+}
+
+
+/*-------リンクの装飾設定-------*/
+a{
+    color: inherit;                             /*リンクが青色表示されるのを解除*/
+    text-decoration: none;                      /*リンクの下線をを消す*/
+}
+
+/*-------リンクの動的設定------*/
+a:hover{
+    filter: brightness(90%)contrast(120%);     /*リンクを触ったときに色を変える。*/
+}
+
+
+/*-------文字の設定-------*/
+h1,h2,h3,h4,h5,h6,p,a{
+    margin: 0;
+    font-family: 'Kaisei Opti', serif;           /*コメント欄*/
+}
+
+/*-------画像の設定-------*/
+img{
+    display: block;                              /*下辺に自動で入る白の余白を消す*/
+}
+
+/*-------ヘッダー全体に適用させる-------*/
+.header{
+    height: 60px;                                /*ヘッダーの高さ*/
+    background-color: rgb(124, 149, 158);      /*背景の色*/    
+    font-family: 'Kaisei Opti', serif;           /*文字の種類*/
+    color: aliceblue;                          /*文字の色*/
+    min-height: 0vw;                        /*文字の太さ*/
+    font-weight: 400;                       /*文字の太さ*/
+    position: sticky;                            /*ヘッダーがスクロールされずに固定される。*/
+    z-index: 10;                                 /*ページをスクロールしても後続のパーツと重ならないように「10」ヘッダーが上になるように指定*/
+    top: 0;                                      /*画面の上から内側に「0」の距離にヘッダーの上端を固定する。*/
+}
+
+/*-------ヘッダー内のコンテナ適用させる-------*/
+.header-container{
+    display: flex;                               /*コンテナを横並びにする。*/
+    height: 100%;                                /*ヘッダーの高さと同じにする。*/
+    align-items: center;                         /*コンテナ内のアイテムの横方向の配置を中心線上に揃える*/
+    justify-content: space-between;              /*コンテナ内のアイテムを両端揃えにして左右に配置する。*/
+}
+
+/*-------コンテナの横幅と余白-------*/
+.w-container{
+    width: min(92%,1166px);                     /*画面に対して92%で表示、画面が小さくなっても1166pxよりは小さくはしない。*/
+    margin: auto;                               /*自動的に左右に同じサイズの余白が入る様にする。（100-92）/2=4％となる。*/
+}
+
+/*-------ヒーロー全体に適用させる-------*/
+.hero{
+    height: 300px;
+    background-image:url(../image/room_image03.jpg);
+    background-position: center;
+    background-size: cover;
+}
+
+/*-------ヒーロー内のコンテナ適用させる-------*/
+.hero-container{
+    display: grid;
+    justify-items: center;
+    align-content: center;
+    height: 100%;
+}
+
+/*-------フォームコンテナ適用させる-------*/
+.form{
+    display: grid;
+    justify-items: center;
+    align-content: center;
+    height: 100%;
+}
+
+
+/*-------ヒーロー内の文字に適用させる-------*/
+.hero h1{
+    margin-bottom: 40px;
+    color: aliceblue;                     /*文字の色*/
+    font-size: clamp(38px,5vw,48px);        /*文字サイズを5vwにし、最小48～最大68で可変にしている。*/
+    min-height: 0vw;                        /*文字の太さ*/
+    font-weight: 400;                       /*文字の太さ*/
+    line-height: 1.3;                       /*行の高さ*/
+    text-align: center;                     /*幅の狭い画面で改行された際に左寄せではなく中央寄せになるようにしている*/
+}
+
+.hero P{
+    margin-bottom: 50px;
+    color: aliceblue;
+}
+
+
+/*-------ボディ全体に適用させる-------*/
+.body{
+    margin:0;                                   /*ページの周りに余計な空白を入れない。*/
+    background-color: rgb(233, 233, 113);     /*背景色*/
+    font-family: 'Kaisei Opti', serif;          /*文字の種類*/
+}
+
+
+/*-------メインコンテンツエリア全体に適用させる-------*/
+.maincontent-container{
+    display: flex;                               /*コンテナを横並びにする。*/
+    flex-wrap: wrap;                             /*外側のくくりが狭くなったらコンテナを折り返す。*/
+    height: 100%;                                /*高さ*/
+    background-color: rgb(144, 172, 181);      /*背景色*/
+    font-family: 'Kaisei Opti', serif;           /*文字の種類*/
+    margin:0;                                    /*ページの周りに余計な空白を入れない。*/
+    align-items: center;                         /*コンテナ内のアイテムの横方向の配置を中心線上に揃える*/
+    justify-content: space-between;              /*コンテナ内のアイテムを両端揃えにして左右に配置する。*/
+}
+
+/*-------リストサイド全体の設定-------*/
+.list_side{
+    width: 50%;
+    height: 500px;
+    background-color: rgba(255, 255, 255,0.7);
+    margin: 25px;                                           /*親ボックスと子ボックスの隙間*/
+    padding: 30px;                                          /*子ボックス内の文字とボックス間の隙間*/
+    border-radius: 5px;      
+}
+
+/*-------グラフサイド全体の設定の設定-------*/
+.graph_side{
+    height: 100%;
+    background-color: rgba(255, 255, 255,0.7);
+    margin: 25px;                                           /*親ボックスと子ボックスの隙間*/
+    padding: 20px;                                          /*子ボックス内の文字とボックス間の隙間*/
+    border-radius: 5px;                                     /*角を丸くする。*/
+}
+
+
+/*-------リストサイド内アイテムリストテーブルの設定-------*/
+.list_side{
+    width: 50%;
+    height: 100%;
+    background-color: rgba(255, 255, 255,0.7);
+    margin: 20px;                                           /*親ボックスと子ボックスの隙間*/
+    padding: 30px;                                          /*子ボックス内の文字とボックス間の隙間*/
+    border-radius: 5px;      
+}
+
+/*-------リストサイド内のボタンコンテナ適用させる-------*/
+.btnarea{
+    height: 50px;
+    display: grid;
+    align-items: center;                         /*コンテナ内のアイテムの横方向の配置を中心線上に揃える*/
+}
+
+
+/*-------フッター-------*/
+.footer{
+    height: 100px;
+    justify-items: center;
+    align-content: center;
+    background-position: center;
+}
+
+/*-------フッター内のコンテナ適用させる-------*/
+.footer-container{
+    display: grid;                               /*コンテナを横並びにする。*/
+    height: 100%;                                /*フッターーの高さと同じにする。*/
+    align-items: center;                         /*コンテナ内のアイテムの横方向の配置を中心線上に揃える*/
+    align-content: center;
+}
+
+.footer p{
+    margin-bottom: 40px;
+    color: rgb(0, 0, 0);                  /*文字の色*/
+    min-height: 0vw;                        /*文字の太さ*/
+    line-height: 1.3;                       /*行の高さ*/
+    text-align: center;                     /*幅の狭い画面で改行された際に左寄せではなく中央寄せになるようにしている*/
+}
+
+/*-------ページネーションデザイン用コピペ-------*/
+.pager .pagination {
+    text-align: center;
+}
+
+.pager .pagination li {
+    display: inline;
+    margin: 0 2px;
+    padding: 0;
+    display: inline-block;
+    background: #888791;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    position: relative;
+    border-radius: 10px;
+}
+
+.pager .pagination li.pre,
+.pager .pagination li.next{
+    display: inline-block;
+    width: 100px;
+    height: 50px;
+    text-align: center;
+}
+
+.pager .pagination li a{
+    vertical-align: middle;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    display:table;
+    color: #fff;
+    text-decoration: none;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all  0.3s ease;
+}
+
+.pager .pagination li a span{
+    display:table-cell;
+    vertical-align:middle;
+}
+
+.pager .pagination li a:hover,
+.pager .pagination li a.active{
+    color: #000;
+    background:rgb(144, 172, 181);
+    border-color: #00f;
+    border-radius: 10px;
+}
+
+@media only screen and (max-width: 767px){
+    .pager .pagination li{
+    display: none;
+    }
+
+    .pager .pagination li.pre,
+    .pager .pagination li.next{
+    display: inline-block;
+    width: 20%;
+    height: 50px;
+    text-align: center;
+    }
+
+    .pager .pagination li.pre a,
+    .pager .pagination li.next a{
+    width: 100%;
+    text-align: center;
+    }
+
+}
+/*-------テーブルデザイン用コピペ-------*/
+body {
+    line-height: 2;
+}
+
+.list_table {
+    border-collapse: collapse;
+    margin: 0 auto;
+    padding: 0;
+    width: 100%;
+        box-shadow: 0 0 15px -6px #00000073;
+}
+.list_tr {
+    background-color: #fff;
+}
+.list_body tr:hover{
+    background-color: #e9e9ff;
+}
+.list_th,
+.list_td {
+    padding: .35em 1em;
+    border-bottom: 1px solid #eee;
+}
+.list_thead th {
+    font-size: .85em;
+    padding: 1em;
+}
+.list_thead tr{
+    background-color:#888791;
+    color:#fff;
+}
+.list_body th {
+    text-align: left;
+    font-size: .8em;
+}
+.txt{
+    text-align: left;
+    font-size: .85em;
+    font-weight: bold;   
+}
+.tdbtn{
+    text-align: right;
+    font-size: .85em;
+}
+@media screen and (max-width: 600px) {
+    list_table{width: 100%;}
+}
+

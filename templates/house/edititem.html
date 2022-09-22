@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>{{title}}</title>
+</head>
+
+
+<body>
+
+<h1>【モノの編集】</h1>
+<p>・既にある名前は使用できません。</p>
+<p>・部屋の名前は20文字以内にしてください。</p>
+
+    <form action="{% url 'edititem' id %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="変更">
+    </form>
+    <a href="/house">変更せず戻る</a>
+
+</body>
+</html>

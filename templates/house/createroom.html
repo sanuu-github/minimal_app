@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>{{title}}</title>
+</head>
+
+
+<body>
+
+<h1>【新しく部屋を追加する。】</h1>
+<p>・追加したい部屋の名前を入力して、追加ボタンをクリックしてください。</p>
+<p>・既にある名前は使用できません。</p>
+<p>・部屋の名前は20文字以内にしてください。</p>
+
+{% if messages %}
+<hr>
+    {% for message in messages %} 
+    {{ message }}
+    {% endfor %}    
+<hr>
+{% endif %}
+
+
+    <form action="{% url 'createroom' %}" method="post">
+        {% csrf_token %}
+        {{ form.as_table }}
+        <input type="submit" value="追加">
+    </form>
+
+<br>
+<hr>
+<h1>【部屋名の変更/削除】</h1>
+<p>・既にある名前は使用できません。</p>
+<p>・部屋を削除するとに紐づいているモノも全て削除されます。</p>
+    <table class="table">
+        <tr>
+            <th>部屋名</th>
+        </tr>
+    {% for item in roomlist %}
+        <tr>
+            <td>{{item.name}}</td>
+            <td><a href="{% url 'editroom' item.id %}">編集</a></td>
+            <td><a href="{% url 'deleteroom' item.id %}">削除</a></td>
+        </tr>
+    {% endfor %}
+    </table>
+
+<hr>
+
+<br>
+<a href="/house">トップページに戻る</a>
+
+
+
+</body>
+</html>
