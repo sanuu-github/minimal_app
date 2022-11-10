@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>{{title}}</title>
+    
+    <!-- CSSの適用リンク -->
+    <link rel="stylesheet" type="text/css" 
+        href="{% static 'house/css/style.css' %}" />
+</head>
+
+<body>
+    <main>
+        <div class="plans-con">
+        
+            <div class="w-con02">
+                <div class="sred">
+                    <div class="form">
+                        <h2>アイテムを編集する</h2>
+                        <p>・部屋の名前は20文字以内にしてください。</p>
+                        <br>
+                        <form action="{% url 'edit_item' id %}" method="post">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <input type="submit" value="追加">
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <a href="/house" class="btn">変更せず戻る</a>   
+            </div>
+        </div>
+    </main>
+</body>
+</html>

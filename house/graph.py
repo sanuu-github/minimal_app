@@ -1,11 +1,12 @@
 #参考サイトhttps://di-acc2.com/programming/python/5322/
 
+#インポート文------------------------------------------------------------------------------------------------------------
 import matplotlib.pyplot as plt
 import base64
 from io import BytesIO
 
 
-#プロットしたグラフを画像データとして出力するための関数
+#プロットしたグラフを画像データとして出力するための関数---------------------------------------------------------------------
 def Output_Graph():
 	buffer=BytesIO()                     #バイナリI/O(画像や音声データを取り扱う際に利用)
 	plt.savefig(buffer,format="png")     #png形式の画像データを取り扱う
@@ -17,7 +18,7 @@ def Output_Graph():
 	return graph
 
 
-#グラフをプロットするための関数>>棒グラフ用
+#グラフをプロットするための関数>>棒グラフ用--------------------------------------------------------------------------------
 def Plot_Graph(x,y):
 	plt.switch_backend("AGG")             #スクリプトを出力させない
 	plt.figure(figsize=(5.5,4.5))         #グラフサイズ
@@ -31,7 +32,7 @@ def Plot_Graph(x,y):
 	return graph
 
 
-#グラフをプロットするための関数>>円グラフ用
+#グラフをプロットするための関数>>円グラフ用--------------------------------------------------------------------------------
 def Plot_PieChart(p,l):
     plt.rcParams['font.family']='Yu Gothic'                 #日本語表示する設定
     c=["skyblue",'powderblue','lightcyan','cadetblue',"cornflowerblue"]  #円グラフの色の設定。順番に適用されて最後まできたら最初に戻り繰り返す。

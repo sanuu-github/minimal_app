@@ -1,0 +1,131 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>部屋とカテゴリーの設定</title>
+
+    <!-- CSSの適用リンク -->
+    <link rel="stylesheet" type="text/css" 
+        href="{% static 'house/css/style.css' %}" />
+
+
+</head>
+
+<body>
+{% if messages %}
+    {% for message in messages %} 
+    {{ message }}
+    {% endfor %}
+{% endif %}
+
+
+<main>
+<div class="plans-con">
+
+    <div class="w-con02">
+        <div class="sred">
+            <div class="form">
+                <h2>部屋をつくる</h2>
+                <form action="{% url 'create' %}" method="post">
+                {% csrf_token %}
+                {{ form.as_table }}
+                <input type="submit" value="追加">
+                </form>
+            </div>
+
+            <div class="room_list">
+                <p>現在の部屋一覧</p>
+                <p>※※項目を削除すると紐づいているアイテムの項目も解除されます。</p>
+                <table class="tb01">
+                    <tr class="head">
+                        <th>部屋名</th>
+                        <th>編集</th>
+                        <th>削除</th>
+                    </tr>
+                    {% for item in roomlist %}
+                    <tr>
+                        <td>{{item.name}}</td>
+                        <td><a href="{% url 'edit_room' item.id %}">編集</a></td>
+                        <td><a href="{% url 'delete_room' item.id %}">削除</a></td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+
+
+
+        <div class="sred">
+            <div class="form">
+                <h2>カテゴリーAをつくる</h2>
+                <form action="{% url 'create_catea' %}" method="post">
+                {% csrf_token %}
+                {{ form_a.as_table }}
+                <input type="submit" value="追加">
+                </form>
+            </div>
+
+            <div class="room_list">
+                <p>現在のカテゴリーA一覧</p>
+                <p>※項目を削除すると紐づいているアイテムの項目は空白となります</p>
+                <table class="tb01">
+                    <tr class="head">
+                        <th>カテゴリー名</th>
+                        <th>編集</th>
+                        <th>削除</th>
+                    </tr>
+                    {% for catea in catealist %}
+                    <tr>
+                        <td>{{catea.namea}}</td>
+                        <td><a href="{% url 'edit_catea' catea.id %}">編集</a></td>
+                        <td><a href="{% url 'delete_catea' catea.id %}">削除</a></td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+
+
+
+        <div class="sred">
+            <div class="form">
+                <h2>カテゴリーBをつくる</h2>
+                <form action="{% url 'create_cateb' %}" method="post">
+                {% csrf_token %}
+                {{ form_b.as_table }}
+                <input type="submit" value="追加">
+                </form>
+            </div>
+
+            <div class="room_list">
+                <p>現在のカテゴリーB一覧</p>
+                <p>※項目を削除すると紐づいているアイテムの項目は空白となります。</p>
+                <table class="tb01">
+                    <tr class="head">
+                        <th>項目名</th>
+                        <th>編集</th>
+                        <th>削除</th>
+                    </tr>
+                    {% for cateb in cateblist %}
+                    <tr>
+                        <td>{{cateb.nameb}}</td>
+                        <td><a href="{% url 'edit_cateb' cateb.id %}">編集</a></td>
+                        <td><a href="{% url 'delete_cateb' cateb.id %}">削除</a></td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+
+
+</div>
+</main>
+
+
+<div>
+    <a href="/house" class="btn">トップページに戻る</a>
+</div>
+
+</body>
+</html>

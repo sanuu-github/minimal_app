@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>{{title}}</title>
+    
+    <!-- CSSの適用リンク -->
+    <link rel="stylesheet" type="text/css" 
+        href="{% static 'house/css/style.css' %}" />
+</head>
+
+<body>
+<h1>カテゴリーB項目名編集フォーム</h1>
+<p>項目名を変更してください。</p>
+
+    <form action="{% url 'edit_cateb' id %}" method="post">
+        {% csrf_token %}
+        {{ form.as_table }}
+        <input type="submit" value="変更">
+    </form>
+    <a href="/house/create">変更せず戻る</a>
+
+</body>
+</html>

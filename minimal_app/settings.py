@@ -24,11 +24,14 @@ SECRET_KEY = 'django-insecure-#k$2u))kkzh@$*q=@&xqfy@uc==5z0q4fb*%d%xl53smknsn7n
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+#DEBUG=False                                          #AWSディプロイ設定として変更
 
 ALLOWED_HOSTS = []
+#ALLOWED_HOSTS=[os.environ.get("ALLOWED_HOSTS")]      #AWSディプロイ設定として変更
 
 
 # Application definition
+
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -43,7 +46,7 @@ INSTALLED_APPS = [
     'allauth.account',         #追加
     'allauth.socialaccount',   #追加
     'house',
-    'crispy_forms',            #allauthの見た目を変える為に追加
+    'crispy_forms',                #allauthの見た目を変える為に追加
 ]
 
 MIDDLEWARE = [
@@ -66,11 +69,14 @@ TEMPLATES = [
         "DIRS": [os.path.join(BASE_DIR, 'templates')],   #templatesをプロジェクト直下に置く場合に必要な記述
         'APP_DIRS': True,
         'OPTIONS': {
-            'context_processors': [
+            'context_processors':[
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+            ],
+            'builtins':[
+                'bootstrap4.templatetags.bootstrap4',        #カレンダー機能を使用するため追加
             ],
         },
     },
@@ -127,6 +133,10 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = os.path.join(BASE_DIR, 'static'),     #staticをプロジェクト直下に置く場合
+
+STATIC_ROOT="/usr/share/nginx/html/static"               #AWSディプロイ設定として変更
+MEDIA_ROOT="/usr/share/nginx/html/media"                 #AWSディプロイ設定として変更
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field

@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>{{title}}</title>
+    
+    <!-- CSSの適用リンク -->
+    <link rel="stylesheet" type="text/css" 
+        href="{% static 'house/css/style.css' %}" />
+</head>
+
+<body>
+<h1>【削除確認】</h1>
+<p>・以下のデータを削除します。</p>
+<p>・このカテゴリーに紐づいているアイテムのカテゴリーBは空白となります。</p>
+<p>・よろしいですか？</p>
+
+
+<th>カテゴリーB項目名</th>
+<td>{{obj.nameb}}</td>
+
+    <form action="{% url 'delete_cateb' id %}" method="post">
+        {% csrf_token %}
+        <input type="submit" value="削除">
+    </form>
+
+    <a href="/house/create">キャンセル</a>
+
+</body>
+</html>

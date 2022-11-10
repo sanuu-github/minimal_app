@@ -4,6 +4,11 @@
 
 <head>
     <meta charset="UTF-8">
+
+    <!--デバイスに合わせた画面サイズ(ビューポートサイズ)で、-->
+    <!--ページ表示をするよう指定しているレスポンシブでは必須の設定-->
+    <meta name="viewport" content="width=device-width">
+
     <title>What's in my house</title>
 
     <!-- CSSの適用リンク -->
@@ -22,11 +27,9 @@
 </head>
 
 
-
-
 <header class="header">
-    <div class="header-container w-container">
-        <div class="title">
+    <div class="header-container w-con01">
+        <div class="whats in my house">
             <h2><a href="{% url 'index' %}">{{user}} さんのお家</a></h2>
         </div>
 
@@ -45,8 +48,9 @@
     </div>
 </header>
 
+
 <section class="hero">
-    <div class="hero-container w-container">
+    <div class="hero-container w-con01">
         <h1>- What's in my house -</h1>
         <p>お家の持ち物を見える化しよう</p>
     </div>
@@ -54,115 +58,118 @@
 
 
 <body>
+    <section class="plans">
+        <div class="w-con01">
 
-<main class="maincontent-container">  
+            <h2>{{user}} さんの持ち物  <span>My Items</span></h2>
 
-    <div class="list_side">
-        <h3>{{user}} さんの持ち物リスト</h3><br>
-        
-        <div class="form">            
-            <table><tr><td>
-                <form action="{% url 'index' %}" method="post">
-                    {% csrf_token %}{{ form.as_p }}
-                    </td><td>
-                    <input class="twowordbtn" type="submit" value="表示"></td>
-                </form></tr>
-            </table>
-        </div>  
+            <div class="plans-con">
 
-        <div class="btnarea">
-            <table><tr>
-                <td><a href="/house/createitem" class="btn">モノの追加</a></td>
-                <td><a href="/house/createroom" class="btn">部屋の追加・編集・削除</a></td></tr>
-            </table>
+                <div class="plan">
+                    <h3>持ち物リスト</h3>
+                    <h4>{{totalling}}</h4>
+                    <div class="btn_area">
+                        <table><tr>
+                            <td><a href="/house/create_item" class="btn">アイテムの追加</a></td>
+                            <td><a href="/house/create" class="btn">お部屋とカテゴリーの設定</a></td></tr>
+                        </table>
+                    </div>
+
+                    <div class="form_area">
+                        <table class="sarch">
+                        <tr><td>
+                            <form action="{% url 'index' %}" method="post">
+                            {% csrf_token %}
+                                {{ form.as_p }}
+                            </td><td>
+                            <input class="twowordbtn" type="submit" value="表示"></td>
+                            </form></tr>
+                        </table>
+                    </div>
+
+                    <div class="list_area">
+                        <table class="tb01">
+                            <tr class="head">
+                                <th>品名</th>
+                                <th>部屋名</th>
+                                <th>数量</th>
+                                <th>サイズ</th>
+                                <th>編集</th>
+                                <th>削除</th>
+                            </tr>
+                            {% for item in itemlist %}
+                            <tr>
+                                <td data-label="アイテム名">{{item.name}}</td>
+                                <td data-label="部屋名">{{item.room.name}}</td>
+                                <td data-label="数　量">{{item.qty}}</td>
+                                <td data-label="サイズ">{{item.size}}</td>
+                                <td><a href="{% url 'edit_item' item.id %}">編集</a></td>
+                                <td><a href="{% url 'delete_item' item.id %}">削除</a></td>
+                            </tr>
+                            {% endfor %}
+                        </table>
+                    </div>
+
+                    <div class="pager">
+                        <ul class="pagination">
+                        {% if itemlist.has_previous %}
+                            <li><a href="{% url 'index' %}" class="active"><span>最初へ</span></a></li>            
+                            <li class="pre"><a href="{% url 'index' %}{{itemlist.previous_page_number}}"><span>前へ</span></a></li>
+
+                        {% else%}
+                            <li><a href="#" class="active"><span>最初へ</span></a></li>
+                            <li class="pre"><a href="#"><span>前へ</span></a></li>
+
+                        {% endif %}
+                            <li><a href="#"><span>{{itemlist.number}}/{{itemlist.paginator.num_pages}}</span></a></li>
+
+                        {% if itemlist.has_next %}
+                            <li class="next"><a href="{% url 'index' %}{{itemlist.next_page_number}}"><span>次へ</span></a></li>
+                            <li><a href="{% url 'index' %}{{itemlist.paginator.num_pages}}" class="active"><span>最後へ</span></a></li>   
+
+                        {% else %}
+                            <li class="next"><a href="#"><span>次へ</span></a></li>
+                            <li><a href="#" class="active"><span>最後へ</span></a></li>  
+
+                        {% endif %}
+                        </ul>
+                    </div>
+
+                </div>
+
+<br>
+
+                <div class="plan">
+
+                    <h3>{{graphtitle}}グラフ</h3>
+
+                    <div class="w-con02">
+                        <div>
+                            <img src="data:image/png;base64,{{ chart | safe }}">
+                        </div>
+
+                        <div class="switch_btn_container">
+                            <h4>グラフの切り替え</h4>
+                            <a href="{% url 'index_room_qty' %}" class="btn">部屋別/アイテム数 グラフ</a>
+                            <a href="{% url 'index_room_size' %}" class="btn">部屋別/アイテムサイズ グラフ</a>
+                            <a href="{% url 'index_catea_qty' %}" class="btn">カテゴリーA/アイテム数 グラフ</a>
+                            <a href="{% url 'index_catea_size' %}" class="btn">カテゴリーA/アイテムサイズ グラフ</a>
+                            <a href="{% url 'index_cateb_qty' %}" class="btn">カテゴリーB/アイテム数 グラフ</a>
+                            <a href="{% url 'index_cateb_size' %}" class="btn">カテゴリーB/アイテムサイズ グラフ</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
         </div>
-
-
-
-        <table class="list_table">
-            <thead class="list_thead">
-                <tr class="list_tr">
-                    <th scope="col">品名</th>
-                    <th scope="col">部屋名</th>
-                    <th scope="col">数量</th>
-                    <th scope="col">サイズ</th>
-                    <th></th>
-                    <th></th>
-                </tr>
-            </thead>
-
-            <tbody class="list_body">
-                {% for item in itemlist %}
-                <tr class="list_tr">
-                    <td data-label class="txt">{{item.itemname}}</td>
-                    <td data-label class="txt">{{item.sampleroom.name}}</td>
-                    <td data-label class="txt">{{item.qty}}</td>
-                    <td data-label class="txt">{{item.originalsize}}</td>
-                    <td data-label class="tdbtn"><a href="{% url 'edititem' item.id %}">編集</a></td>
-                    <td data-label class="tdbtn"><a href="{% url 'deleteitem' item.id %}">削除</a></td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table> 
-
-        <!-- ページネーション部分 -->    
-        <div class="pager">
-            <ul class="pagination">
-            {% if itemlist.has_previous %}
-                <li><a href="{% url 'index' %}" class="active"><span>最初へ</span></a></li>            
-                <li class="pre"><a href="{% url 'index' %}{{itemlist.previous_page_number}}"><span>前へ</span></a></li>
-            
-            {% else%}
-                <li><a href="#" class="active"><span>最初へ</span></a></li>
-                <li class="pre"><a href="#"><span>前へ</span></a></li>
-
-            {% endif %}
-                <li><a href="#"><span>{{itemlist.number}}/{{itemlist.paginator.num_pages}}</span></a></li>
-
-            {% if itemlist.has_next %}
-                <li class="next"><a href="{% url 'index' %}{{itemlist.next_page_number}}"><span>次へ</span></a></li>
-                <li><a href="{% url 'index' %}{{itemlist.paginator.num_pages}}" class="active"><span>最後へ</span></a></li>   
-            
-            {% else %}
-                <li class="next"><a href="#"><span>次へ</span></a></li>
-                <li><a href="#" class="active"><span>最後へ</span></a></li>  
-
-            {% endif %}
-            </ul>
-        </div>
-
-    </div>
-
-    
-    <div class="graph_side">
-        <h3>{{graphtitle}} グラフ</h3>
-        <br>
-
-        <div class="grapharea">
-            <img src="data:image/png;base64,{{ chart | safe }}">
-        </div>
-        
-        <div class="btnarea">
-            <table><tr>
-            <h4>グラフの切り替え</h4>                
-                <td><a href="/house/createitem" class="btn" method="post">棒グラフ</a></td>
-                <td><a href="/house/createitem" class="btn" method="post">折れ線グラフ</a></td>
-            </table>
-        </div>
-    
-    </div>
-
-</main>
+    </section>
 
 
 <footer class="footer">
-    <div class="footer-container w-container">
+    <div class="footer-container w-con">
         <p>©2022 What's in my house.</p>
     </div>
 </footer>
 
-
 </body>
 </html>
-
-

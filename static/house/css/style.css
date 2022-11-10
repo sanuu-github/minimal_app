@@ -1,10 +1,13 @@
-/*レスポンシブ対応：スマホ320px〜540px、タブレット600px〜1024px、PC1280px〜*/
-/*ロゴ作成サイト：CCOOLTEXT*/
-/*テーブル参考サイト：https://pecopla.net/web-column/table-design*/
-/*テーブル参考サイト：https://b-risk.jp/blog/2018/07/table-css/*/
+/*レスポンシブ対応テーブル参考サイト：http://www.terasol.co.jp/web/6917/*/
+/*レスポンシブ参考値スマホ320px〜540px、タブレット600px〜1024px、PC1280px〜*/
 /*ページネーション参考サイト：https://nakox.jp/web/wordpress/wp_pager_css*/
 
 
+/*-------ボディ全体に適用させる-------*/
+.body{
+    margin:0;                                   /*ページの周りに余計な空白を入れない。*/
+    font-family: 'Kaisei Opti', serif;          /*文字の種類*/
+}
 
 /*-------ナビボタンの設定-------*/
 .navbtn{
@@ -13,7 +16,7 @@
     border: none;                               /*バーイメージのボーダー消す*/
     background: transparent;                    /*バーイメージの背景を透明*/
     cursor: pointer;                            /*カーソルを当てた時ポインタを手の形にする*/
-    color: rgb(255, 255, 255);               /*イメージの色を変えた*/
+    color: rgb(255, 255, 255);                /*イメージの色を変えた*/
 }
 
 
@@ -32,17 +35,16 @@
 
 /*-------その他のボタンの設定-------*/
 .btn{
-    display: block;                            /*四角いボタンを作る。*/
+    display: block;                            /*四角いボタンを作る*/
+    border-radius: 4px;                        /*角を丸くする*/
     min-width: 150px;                          /*横幅*/
-    height: 35px;
+    height: 35px;                              /*高さ*/
     box-sizing: border-box;                    /*余白10pxを含めて260pxにする為*/
-    border-radius: 4px;                        /*角を丸くする。*/
-    background-color: #ffffff;               /*ボタンの背景色*/
+    background-color: rgb(124, 149, 158);    /*ボタンの背景色*/
     color:rgb(0, 0, 0);                      /*ボタンの文字色*/
-    font: size 13px;
-    text-align: center;                        /*文字を中心にする。*/
+    font: size 13px;                           /*文字の大きさ*/
+    text-align: center;                        /*文字を中心にする*/
 }
-
 
 /*-------リンクの装飾設定-------*/
 a{
@@ -52,72 +54,91 @@ a{
 
 /*-------リンクの動的設定------*/
 a:hover{
-    filter: brightness(90%)contrast(120%);     /*リンクを触ったときに色を変える。*/
+    filter: brightness(90%)contrast(120%);      /*リンクを触ったときに色を変える。*/
 }
-
 
 /*-------文字の設定-------*/
 h1,h2,h3,h4,h5,h6,p,a{
     margin: 0;
-    font-family: 'Kaisei Opti', serif;           /*コメント欄*/
+    font-family: 'Kaisei Opti', serif;          /*コメント欄*/
 }
 
 /*-------画像の設定-------*/
 img{
-    display: block;                              /*下辺に自動で入る白の余白を消す*/
+    display: block;                            /*下辺に自動で入る白の余白を消す*/
 }
 
 /*-------ヘッダー全体に適用させる-------*/
 .header{
-    height: 60px;                                /*ヘッダーの高さ*/
-    background-color: rgb(124, 149, 158);      /*背景の色*/    
-    font-family: 'Kaisei Opti', serif;           /*文字の種類*/
-    color: aliceblue;                          /*文字の色*/
-    min-height: 0vw;                        /*文字の太さ*/
-    font-weight: 400;                       /*文字の太さ*/
-    position: sticky;                            /*ヘッダーがスクロールされずに固定される。*/
-    z-index: 10;                                 /*ページをスクロールしても後続のパーツと重ならないように「10」ヘッダーが上になるように指定*/
-    top: 0;                                      /*画面の上から内側に「0」の距離にヘッダーの上端を固定する。*/
+    height: 60px;                              /*ヘッダーの高さ*/
+    background-color: rgb(124, 149, 158);    /*背景の色*/
+    font-family: 'Kaisei Opti', serif;         /*文字の種類*/
+    color: aliceblue;                        /*文字の色*/
+    min-height: 0vw;                           /*文字の太さ*/
+    font-weight: 400;                          /*文字の太さ*/
+    position: sticky;                          /*ヘッダーがスクロールされずに固定される*/
+    z-index: 10;                               /*ページをスクロールしても後続のパーツと重ならないように「10」ヘッダーが上になるように指定*/
+    top: 0;                                    /*画面の上から内側に「0」の距離にヘッダーの上端を固定する。*/
 }
 
-/*-------ヘッダー内のコンテナ適用させる-------*/
+/*-------ヘッダー内のコンテナに適用させる-------*/
 .header-container{
-    display: flex;                               /*コンテナを横並びにする。*/
-    height: 100%;                                /*ヘッダーの高さと同じにする。*/
-    align-items: center;                         /*コンテナ内のアイテムの横方向の配置を中心線上に揃える*/
-    justify-content: space-between;              /*コンテナ内のアイテムを両端揃えにして左右に配置する。*/
+    display: flex;                             /*コンテナを横並びにする*/
+    height: 100%;                              /*ヘッダーの高さと同じにする*/
+    align-items: center;                       /*コンテナ内のアイテムの横方向の配置を中心線上に揃える*/
+    justify-content: space-between;            /*コンテナ内のアイテムを両端揃えにして左右に配置する。*/
 }
+
+/*-------クリエイトのカードに適用させる-------*/
+.sred{
+    border-radius: 15px;                        /*角を丸くする*/
+    background-color: #ffffff;
+    padding: 5px;
+    height: 100%;                              /*ヘッダーの高さと同じにする*/
+    align-items: center;                       /*コンテナ内のアイテムの横方向の配置を中心線上に揃える*/
+    justify-content: space-between;            /*コンテナ内のアイテムを両端揃えにして左右に配置する。*/
+}
+
 
 /*-------コンテナの横幅と余白-------*/
-.w-container{
-    width: min(92%,1166px);                     /*画面に対して92%で表示、画面が小さくなっても1166pxよりは小さくはしない。*/
-    margin: auto;                               /*自動的に左右に同じサイズの余白が入る様にする。（100-92）/2=4％となる。*/
+.w-con01{
+    width: min(92%,1166px);      /*画面に対して92%で表示、画面が小さくなっても1166pxよりは小さくはしない。*/
+    margin: auto;                /*自動的に左右に同じサイズの余白が入る様にする。（100-92）/2=4％となる。*/
+}
+
+.w-con02{
+    padding: 10px;
+    margin: 10PX;
+    background-color: #ffffff;
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto;                /*自動的に左右に同じサイズの余白が入る様にする。（100-92）/2=4％となる。*/
+    justify-content: center;
 }
 
 /*-------ヒーロー全体に適用させる-------*/
 .hero{
-    height: 300px;
-    background-image:url(../image/room_image03.jpg);
-    background-position: center;
-    background-size: cover;
+    height: 300px;                                     /*高さ*/
+    background-image:url(../image/room_image03.jpg);   /*背景画像の設定*/
+    background-position: center;                       /*背景の位置*/
+    background-size: cover;                            /*背景の配置*/
 }
 
 /*-------ヒーロー内のコンテナ適用させる-------*/
 .hero-container{
     display: grid;
     justify-items: center;
-    align-content: center;
-    height: 100%;
+    align-content: center;                            /*コンテナ内のアイテムの横方向の配置を中心線上に揃える*/
+    height: 100%;                                     /*コンテナの高さは外枠の大きさと同じにする*/
 }
 
 /*-------フォームコンテナ適用させる-------*/
-.form{
-    display: grid;
+.form_area{
+    display: flex;
     justify-items: center;
     align-content: center;
     height: 100%;
 }
-
 
 /*-------ヒーロー内の文字に適用させる-------*/
 .hero h1{
@@ -135,62 +156,86 @@ img{
     color: aliceblue;
 }
 
+/*-------基本-------*/
+:root{
+--v-space:clamp(90px,9vw,120px);
+}
 
-/*-------ボディ全体に適用させる-------*/
-.body{
-    margin:0;                                   /*ページの周りに余計な空白を入れない。*/
-    background-color: rgb(233, 233, 113);     /*背景色*/
-    font-family: 'Kaisei Opti', serif;          /*文字の種類*/
+/*-------パーツの見出し-------*/
+.heading{
+    position: absolute;
+    top: calc((var(--v-space) + 0.6em)*-1);
+    font-size: clamp(40px,5.2vw,70px);
+    min-height: 0vw;
+    font-weight: 300;
+}
+
+.heading span{
+    display: block;
+    color:#666666;
+    font-size: 18px;
+}
+
+.entry-container>:last-child{
+    margin-bottom: 0;
+}
+
+/*-------プラン-------*/
+.plans{
+    height: auto;
+    padding: var(--v-space) 0;
+    background-color: #e9e9e9;
+}
+
+.plans_con{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 27px 30px;
+}
+
+@media(min-width:768px){
+    .plans-con {
+        grid-template-columns: repeat(2,1fr);
+    }
+}
+
+/*-------プラン：カード-------*/
+.plan{
+    padding: 10px 27px;
+    border-radius: 20px;
+    background-color: #ffffff;
+}
+
+p{
+    line-height: 1.8;
+}
+
+.plan h3{
+    margin-bottom: 15px;
+    font-size: 38px;
+    font-weight: 400;
 }
 
 
-/*-------メインコンテンツエリア全体に適用させる-------*/
-.maincontent-container{
-    display: flex;                               /*コンテナを横並びにする。*/
-    flex-wrap: wrap;                             /*外側のくくりが狭くなったらコンテナを折り返す。*/
-    height: 100%;                                /*高さ*/
-    background-color: rgb(144, 172, 181);      /*背景色*/
-    font-family: 'Kaisei Opti', serif;           /*文字の種類*/
-    margin:0;                                    /*ページの周りに余計な空白を入れない。*/
-    align-items: center;                         /*コンテナ内のアイテムの横方向の配置を中心線上に揃える*/
-    justify-content: space-between;              /*コンテナ内のアイテムを両端揃えにして左右に配置する。*/
+.plan.desc{
+    margin-bottom: 38px;
 }
 
-/*-------リストサイド全体の設定-------*/
-.list_side{
-    width: 50%;
-    height: 500px;
-    background-color: rgba(255, 255, 255,0.7);
-    margin: 25px;                                           /*親ボックスと子ボックスの隙間*/
-    padding: 30px;                                          /*子ボックス内の文字とボックス間の隙間*/
-    border-radius: 5px;      
-}
-
-/*-------グラフサイド全体の設定の設定-------*/
-.graph_side{
-    height: 100%;
-    background-color: rgba(255, 255, 255,0.7);
-    margin: 25px;                                           /*親ボックスと子ボックスの隙間*/
-    padding: 20px;                                          /*子ボックス内の文字とボックス間の隙間*/
-    border-radius: 5px;                                     /*角を丸くする。*/
+.plan.price{
+    margin-bottom: 22px;
+    font-size: 26px;
+    font-weight: bold;
 }
 
 
-/*-------リストサイド内アイテムリストテーブルの設定-------*/
-.list_side{
-    width: 50%;
-    height: 100%;
-    background-color: rgba(255, 255, 255,0.7);
-    margin: 20px;                                           /*親ボックスと子ボックスの隙間*/
-    padding: 30px;                                          /*子ボックス内の文字とボックス間の隙間*/
-    border-radius: 5px;      
-}
 
 /*-------リストサイド内のボタンコンテナ適用させる-------*/
-.btnarea{
-    height: 50px;
+.switch_btn_container{
+    height: 60vh;
     display: grid;
     align-items: center;                         /*コンテナ内のアイテムの横方向の配置を中心線上に揃える*/
+    gap: 3px;
+    grid-template-columns: 300px;
 }
 
 
@@ -217,6 +262,7 @@ img{
     line-height: 1.3;                       /*行の高さ*/
     text-align: center;                     /*幅の狭い画面で改行された際に左寄せではなく中央寄せになるようにしている*/
 }
+
 
 /*-------ページネーションデザイン用コピペ-------*/
 .pager .pagination {
@@ -294,51 +340,57 @@ img{
     }
 
 }
+
+
 /*-------テーブルデザイン用コピペ-------*/
-body {
-    line-height: 2;
-}
 
-.list_table {
+table{
     border-collapse: collapse;
-    margin: 0 auto;
-    padding: 0;
     width: 100%;
-        box-shadow: 0 0 15px -6px #00000073;
 }
-.list_tr {
-    background-color: #fff;
+.tb01 th,
+.tb01 td{
+    padding: 10px;
+    border: solid 1px #ccc;
+    text-align:center;
+    box-sizing:border-box;
 }
-.list_body tr:hover{
-    background-color: #e9e9ff;
+.tb01 th {
+    background:rgb(124, 149, 158);
+    color: #fff;
+    
 }
-.list_th,
-.list_td {
-    padding: .35em 1em;
-    border-bottom: 1px solid #eee;
+@media screen and (max-width: 640px) {
+    .tb01 .head{
+    display:none;
+    }
+    .tb01 {
+    width: 100%;
+    }
+    .tb01 td,
+    .tb01 th{
+    display: block;
+    width: 100%;
+    border-bottom:none;
+    }
+    .tb01 td{
+    padding: 0px 12px 0 0;
+    display: block;
+    width: 100%;
+    line-height: 2.5;
+    text-align:left;
+    }
+    .tb01 td:before{
+    color: #fff;
+    content: attr(data-label);
+    font-weight: bold;
+    padding: 0px 10px;
+    display: inline;
+    background-color: #888791;
+    margin-right: 10px;
+    float: left;
+    }
+    .tb01 tr:last-child{
+    border-bottom: solid 1px #ccc;
+    }
 }
-.list_thead th {
-    font-size: .85em;
-    padding: 1em;
-}
-.list_thead tr{
-    background-color:#888791;
-    color:#fff;
-}
-.list_body th {
-    text-align: left;
-    font-size: .8em;
-}
-.txt{
-    text-align: left;
-    font-size: .85em;
-    font-weight: bold;   
-}
-.tdbtn{
-    text-align: right;
-    font-size: .85em;
-}
-@media screen and (max-width: 600px) {
-    list_table{width: 100%;}
-}
-

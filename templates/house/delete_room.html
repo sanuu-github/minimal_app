@@ -1,13 +1,16 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
     <title>{{title}}</title>
+    
+    <!-- CSSの適用リンク -->
+    <link rel="stylesheet" type="text/css" 
+        href="{% static 'house/css/style.css' %}" />
 </head>
 
-
 <body>
-
 <h1>【削除確認】</h1>
 <p>・以下のデータを削除します。</p>
 <p>・この部屋に登録されているモノも全て削除されます。</p>
@@ -17,12 +20,12 @@
 <th>部屋名</th>
 <td>{{obj.name}}</td>
 
-    <form action="{% url 'deleteroom' id %}" method="post">
+    <form action="{% url 'delete_room' id %}" method="post">
         {% csrf_token %}
         <input type="submit" value="削除">
     </form>
 
-    <a href="/house/createroom">キャンセル</a>
+    <a href="/house/create">キャンセル</a>
 
 </body>
 </html>

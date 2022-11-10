@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <title>What's in my house</title>
+
+    <!-- CSSの適用リンク -->
+    <link rel="stylesheet" type="text/css" 
+        href="{% static 'house/css/style.css' %}" />
+
+    <!-- グーグルフォント用のリンク -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kaisei+Opti&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Arima:wght@100&display=swap" rel="stylesheet">
+    <link href="https://use.fontawesome.com/releases/v6.1.1/css/all.css" rel="stylesheet">
+
+</head>
+
+
+<body>
+<section class="plans">
+    <div class="w-container">
+        <h2 class="heading">
+            Service Plans
+            <span>サービスプラン</span>
+        </h2>
+
+        <div class="plans-container">
+
+            <div class="plan">
+                <h3>Free</h3>
+                <p class="desc">便利なオンラインツールを
+                    今すぐご利用いただけるプランです。</p>
+                    <p class="price">無料</p>
+                    <a href="#">使ってみる</a>
+            </div>
+
+            <div class="plan">
+                <h3>Standard</h3>
+                <p class="desc">便利なオンラインツールを
+                    今すぐご利用いただけるプランです。</p>
+                    <p class="price">980円</p>
+                    <a href="#">使ってみる</a>
+            </div>
+
+            <div class="plan">
+                <h3>Pro</h3>
+                <p class="desc">便利なオンラインツールを
+                    今すぐご利用いただけるプランです。</p>
+                    <p class="price">2,800円</p>
+                    <a href="#">使ってみる</a>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+</body>
+</html>
