@@ -17,6 +17,7 @@ from django.views.generic import TemplateView
 from . import models
 from .graph import Output_Graph,Plot_Graph,Plot_PieChart
 
+#データ入力
 
 #インフォメッセージ装飾デコレーター(未使用2）---------------------------------------------------------------------------------
 def normal_deco(func):
