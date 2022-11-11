@@ -10,6 +10,8 @@ from django.db.models import Sum,Count
 from.forms import CreateroomForm,CreateitemForm,SelectroomForm,Createcate_aForm,Createcate_bForm
 from.models import Room,Item,Cate_a,Cate_b
 
+#タイトル入力
+
 #以下はグラフ用のインポート文--------------------------------------------------------------------------------------------
 from django.views.generic import TemplateView
 from . import models
